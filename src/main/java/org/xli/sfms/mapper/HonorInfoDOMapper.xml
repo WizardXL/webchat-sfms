@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.xli.sfms.dao.HonorInfoDOMapper" >
+  <resultMap id="BaseResultMap" type="org.xli.sfms.pojo.entity.HonorInfoDO" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="honor_name" property="honorName" jdbcType="VARCHAR" />
+    <result column="item_name" property="itemName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    id, user_id, honor_name, item_name
+  </sql>
+
+  <insert id="batchInsert" parameterType="java.util.List">
+    INSERT IGNORE INTO honor_info (id, user_id, honor_name, item_name) values
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.id},
+      #{item.userId},
+      #{item.honorName},
+      #{item.itemName})
+    </foreach>
+  </insert>
+</mapper>

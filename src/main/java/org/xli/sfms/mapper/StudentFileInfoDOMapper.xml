@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.xli.sfms.dao.StudentFileInfoDOMapper" >
+  <resultMap id="BaseResultMap" type="org.xli.sfms.pojo.entity.StudentFileInfoDO" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" property="id" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="org.xli.sfms.pojo.entity.StudentFileInfoDO" extends="BaseResultMap" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <result column="data" property="data" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    id
+  </sql>
+  <sql id="Blob_Column_List" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    data
+  </sql>
+
+  <insert id="batchInsert" parameterType="java.util.List">
+    INSERT IGNORE INTO student_file_info
+     (id, data) values
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.id},
+      #{item.data})
+    </foreach>
+  </insert>
+</mapper>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.xli.sfms.dao.RootDepartmentDOMapper" >
+  <resultMap id="BaseResultMap" type="org.xli.sfms.pojo.entity.RootDepartmentDO" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="parentid" property="parentid" jdbcType="INTEGER" />
+    <result column="order" property="order" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    id, name, parentid, order
+  </sql>
+
+  <select id="getAll" resultMap="BaseResultMap">
+    SELECT * FROM root_department;
+  </select>
+
+  <insert id="batchInsert" parameterType="java.util.List">
+    INSERT IGNORE INTO root_department (id, name, parentid, `order`) values
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.id},
+      #{item.name},
+      #{item.parentid},
+      #{item.order})
+    </foreach>
+  </insert>
+
+  <delete id="deleteAll">
+    delete from root_department
+  </delete>
+</mapper>
